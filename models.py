@@ -25,10 +25,15 @@ class User(db.Model):
 
     password = db.Column(db.Text, nullable = False)
 
+    image_url = db.Column(
+        db.Text,
+        default="/static/images/default-pic.png",
+    )
+
     decks = db.relationship("Deck", backref="user")
 
     @classmethod
-    def signup(cls, username, password):
+    def signup(cls, username, password, image_url):
         """Sign up user.
         Hashes password and adds user to system.
         """
@@ -38,6 +43,7 @@ class User(db.Model):
         user = User(
             username=username,
             password=hashed_pwd,
+            image_url=image_url
         )
 
         db.session.add(user)
@@ -66,7 +72,7 @@ class Deck(db.Model):
 
     user_id = db.Column(db.Integer,
                         db.ForeignKey("users.id",ondelete="cascade"),
-                        primary_key=True)
+                        nullable=False)
 
     timestamp = db.Column(
         db.DateTime,
