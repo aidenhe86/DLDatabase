@@ -10,6 +10,7 @@ CURR_USER_KEY = "curr_user"
 
 from forms import UserAddForm,LoginForm
 from models import db, connect_db, User, Deck, Like
+from cards import request_card_name
 
 app = Flask(__name__)
 
@@ -106,6 +107,42 @@ def logout():
     flash("Logout Successfully!", "success")
 
     return redirect("/")
+
+##############################################################################
+#  User Route
+@app.route("/users/<int:user_id>")
+def users_show(user_id):
+    """Show user profile."""
+
+    user = User.query.get_or_404(user_id)
+
+    # snagging messages in order from the database;
+    # user.messages won't be in order by default
+    # messages = (Message
+    #             .query
+    #             .filter(Message.user_id == user_id)
+    #             .order_by(Message.timestamp.desc())
+    #             .limit(100)
+    #             .all())
+
+    if g.user:
+        likes = [msg.id for msg in g.user.likes]
+    else:
+        likes = []
+    return render_template('users/show.html', user=user, likes=likes)
+
+
+
+##############################################################################
+#  Search card
+@app.route("/card_search")
+def searchcard():
+    """search card"""
+    name = request.args.get("fname")
+    cards = request_card_name(name)
+    if cards == []:
+        flash("No card matching! Please try again.", "danger")
+    return render_template("cards/cards.html",cards=cards)
 
 
 

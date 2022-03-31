@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form class="row g-3">
+    <label for="search_card_name" class="col-2 col-form-label">
+        Search By Card Name:
+    </label>
+    <div class="col-9">
+      <input type="text" name="fname" class="form-control" placeholder="Card Name">
+    </div>
+    <div class="col-1">
+      <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
+</form>
+
+
+<ul class="cardlists">
+    {% for card in cards %}
+    <li id="{{card["id"]}}">
+        <div class="row m-1 border rounded">
+            <div class="col-3 p-2">
+                <img src="{{card["card_images"][0]["image_url_small"]}}" alt="card image">
+            </div>
+            <div class="col-9 p-2">
+                <h5 class="mt-0">{{card["name"]}}</h5>
+                <h5>
+                    {{card["type"]}} | {{card["race"]}}
+                    {% if (card["type"] != "Spell Card") or (card["type" != "Trap Card"]) %}
+                        {% if card["scale"] %}
+                             | Scale:{{card["scale"]}}
+                        {% endif %}
+                     | {{card["attribute"]}} | Level:{{card["level"]}} | ATK:{{card["atk"]}} | DEF:{{card["def"]}}
+                    {% endif %}
+                </h5>
+                <p>
+                    {{card["desc"]}}
+                </p>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock %}
