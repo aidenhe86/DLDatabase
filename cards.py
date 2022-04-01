@@ -7,7 +7,7 @@ def request_card_name(name):
     url = f"{API_BASE_URL}&fname={name}"
     response = requests.get(url)
     r = response.json()
-    if not name or r.get("error"):
+    if r.get("error"):
         return []
     else:
         cards = r["data"][:10]

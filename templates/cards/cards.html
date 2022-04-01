@@ -1,17 +1,93 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script src="/static/cards.js"></script>
 
-<form class="row g-3">
-    <label for="search_card_name" class="col-2 col-form-label">
-        Search By Card Name:
-    </label>
-    <div class="col-9">
-      <input type="text" name="fname" class="form-control" placeholder="Card Name">
+<form>
+    <!-- Name Search -->
+    <div class="row">
+        <label for="fname" class="col-2 col-form-label">
+            Card Name:
+        </label>
+        <div class="col-9">
+          <input type="text" name="fname" class="form-control"  placeholder="Card Name">
+        </div>
+        <div class="col-1">
+          <button type="submit" class="btn btn-primary mb-3">Search</button>
+        </div>
     </div>
-    <div class="col-1">
-      <button type="submit" class="btn btn-primary mb-3">Search</button>
+
+    <!-- Advance Search -->
+    <!-- Monster, Spell or Trap Card -->
+    <div class="row mb-3">
+        <div class="col-6 ">
+            <select class="form-select" id="cardType">
+                <option selected>Card Type</option>
+                <option value="Monster">Monster Card</option>
+                <option value="Spell Card">Spell Card</option>
+                <option value="Trap Card">Trap Card</option>
+                <option value="Extra Monster Card">Extra Monster Card</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <select class="form-select" id="cardRace">
+                <option selected>Card Race</option>
+                <option value="1">One</option>
+            </select>
+        </div>
     </div>
+
+    <!-- Moster card -->
+    <div class="row mb-3">
+        <div class="col-3 ">
+            <select class="monster form-select" id="monsterType" disabled>
+                <option selected>Monster Type</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="monster form-select" id="monsterRace" disabled>
+                <option selected>Monster Race</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="monster form-select" id="attribute" disabled>
+                <option selected>Attribute</option>
+            </select>
+        </div>
+        <!-- if Pendulum monster -->
+        <div class="col-3">
+            <select class="monster form-select" id="scale" disabled>
+                <option selected>Scale</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-4">
+            <input type="number" name="atkNum" class="monster form-control" placeholder="Attack" disabled>
+        </div>
+        <div class="col-2">
+            <select name="atk" id="atk" class="monster form-select" disabled>
+                <option value="gt">Greater than</option>
+                <option value="gte">Greater than equal to</option>
+                <option value="lt">Less than</option>
+                <option value="lte">Less than equal to</option>
+            </select>
+        </div>
+
+        <div class="col-4">
+            <input type="number" name="defNum" class="monster form-control" placeholder="Defense" disabled>
+        </div>
+        <div class="col-2">
+            <select name="def" id="def" class="monster col-1 form-select" disabled>
+                <option value="gt">Greater than</option>
+                <option value="gte">Greater than equal to</option>
+                <option value="lt">Less than</option>
+                <option value="lte">Less than equal to</option>
+            </select>
+        </div>
+    </div>
+
 </form>
 
 
@@ -23,7 +99,7 @@
                 <img src="{{card["card_images"][0]["image_url_small"]}}" alt="card image">
             </div>
             <div class="col-9 p-2">
-                <h5 class="mt-0">{{card["name"]}}</h5>
+                <h4 class="mt-0">{{card["name"]}}</h5>
                 <h5>
                     {{card["type"]}} | {{card["race"]}}
                     {% if (card["type"] != "Spell Card") or (card["type" != "Trap Card"]) %}
@@ -41,8 +117,5 @@
     </li>
     {% endfor %}
 </ul>
-
-
-
 
 {% endblock %}

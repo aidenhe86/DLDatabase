@@ -83,8 +83,6 @@ nav form.navbar-form {
   list-style-type: none;
 }
 
-/* Not locating the card image */
 .cardlists img {
-  width: 10px;
-  background-color: #007bff;
+  max-width: 100%;
 }
