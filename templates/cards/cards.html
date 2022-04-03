@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<script src="/static/cards.js"></script>
-
 <form>
     <!-- Name Search -->
     <div class="row">
@@ -21,43 +19,68 @@
     <!-- Monster, Spell or Trap Card -->
     <div class="row mb-3">
         <div class="col-6 ">
-            <select class="form-select" id="cardType">
+            <select class="form-select" name = "ctype" id="cardType">
                 <option selected>Card Type</option>
                 <option value="Monster">Monster Card</option>
                 <option value="Spell Card">Spell Card</option>
                 <option value="Trap Card">Trap Card</option>
-                <option value="Extra Monster Card">Extra Monster Card</option>
+                <option value="Extra Monster">Extra Monster Card</option>
             </select>
         </div>
         <div class="col-6">
-            <select class="form-select" id="cardRace">
+            <select class="form-select" name = "race" id="cardRace" disabled>
                 <option selected>Card Race</option>
-                <option value="1">One</option>
             </select>
         </div>
     </div>
 
-    <!-- Moster card -->
+    <!-- Monster card -->
     <div class="row mb-3">
         <div class="col-3 ">
-            <select class="monster form-select" id="monsterType" disabled>
+            <select class="monster form-select" name = "mtype" id="monsterType" disabled>
                 <option selected>Monster Type</option>
             </select>
         </div>
         <div class="col-3">
-            <select class="monster form-select" id="monsterRace" disabled>
-                <option selected>Monster Race</option>
-            </select>
-        </div>
-        <div class="col-3">
-            <select class="monster form-select" id="attribute" disabled>
+            <select class="monster form-select" name = "attr" id="attribute" disabled>
                 <option selected>Attribute</option>
             </select>
         </div>
-        <!-- if Pendulum monster -->
         <div class="col-3">
-            <select class="monster form-select" id="scale" disabled>
+            <select class="monster form-select" name = "lv" id="level" disabled>
+                <option selected>Level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <!-- Pendulum monster -->
+        <div class="col-3">
+            <select class="form-select" name = "scale" id="scale" disabled>
                 <option selected>Scale</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
             </select>
         </div>
     </div>
@@ -67,7 +90,7 @@
             <input type="number" name="atkNum" class="monster form-control" placeholder="Attack" disabled>
         </div>
         <div class="col-2">
-            <select name="atk" id="atk" class="monster form-select" disabled>
+            <select name="atkSymbol" id="atk" class="monster form-select" disabled>
                 <option value="gt">Greater than</option>
                 <option value="gte">Greater than equal to</option>
                 <option value="lt">Less than</option>
@@ -79,7 +102,7 @@
             <input type="number" name="defNum" class="monster form-control" placeholder="Defense" disabled>
         </div>
         <div class="col-2">
-            <select name="def" id="def" class="monster col-1 form-select" disabled>
+            <select name="defSymbol" id="defSymbol" class="monster col-1 form-select" disabled>
                 <option value="gt">Greater than</option>
                 <option value="gte">Greater than equal to</option>
                 <option value="lt">Less than</option>
@@ -117,5 +140,8 @@
     </li>
     {% endfor %}
 </ul>
+
+
+<script src="/static/cards.js"></script>
 
 {% endblock %}

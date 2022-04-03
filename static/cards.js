@@ -4,6 +4,8 @@ const spellRace =["Normal","Field","Equip","Continuous","Quick-Play","Ritual"]
 
 const trapRace = ["Normal","Continuous","Counter"]
 
+const attribute = ["DARK","DIVINE","EARTH","FIRE","LIGHT","WATER","WIND"]
+
 const monsterType =[
     "Effect Monster",
     "Flip Effect Monster",
@@ -34,17 +36,100 @@ const extraMonsterType = [
 const $type = $(`#cardType`);
 const $monster = $(`.monster`);
 
+// enable/disable filter base on card type
 function selectFilter(evt){
     evt.preventDefault();
-    console.log("select");
 
     let cardType = $type.val();
-    if (cardType === ("Monster Card" || "Extra Monster Card")){
-        $monster.prop("disabled",false);
+    if(cardType === "Card Type"){
+        $(`#cardRace`).prop("disabled",true);
+        $monster.prop("disabled",true);
     }
     else{
-        $monster.prop("disabled",true);
+        $(`#cardRace`).prop("disabled",false);
+
+        if (cardType === "Monster" || cardType === "Extra Monster"){
+            $monster.prop("disabled",false);
+            populateMon(cardType);
+        }
+        else{
+            $monster.prop("disabled",true);
+        }
+    }
+
+    populateRace(cardType);
+}
+$(`#cardType`).on("click",selectFilter)
+
+
+// populate race base on card type
+function populateRace(cardType){
+    let race = [];
+    let $cardRace = $(`#cardRace`);
+    $cardRace.empty();
+    $cardRace.append($(`<option selected>Card Race</option>`));
+
+    if(cardType === "Monster" || cardType === "Extra Monster"){
+        race = monsterRace;
+    }
+    else if (cardType === "Spell Card"){
+        race = spellRace;
+    }
+    else if (cardType === "Trap Card"){
+        race = trapRace;
+    }
+
+    for(let r of race){
+        let v = r.replaceAll(" ","%20");
+        let $option = $(`<option value = ${v} >${r}</option>`);
+        $cardRace.append($option);
     }
 }
 
-$(`#cardType`).on("click",selectFilter)
+// populate monster type & attribute
+function populateMon(cardType){
+    let type = [];
+
+    // type
+    let $monsterType = $(`#monsterType`);
+    $monsterType.empty();
+    $monsterType.append($(`<option selected>Monster Type</option>`));
+
+    if(cardType === "Monster"){
+        type = monsterType
+    }
+    else if (cardType === "Extra Monster"){
+        type = extraMonsterType
+    }
+
+    for (let t of type){
+        let v = t.replaceAll(" ","%20");
+        let $option = $(`<option value=${v}>${t}</option>`);
+        $monsterType.append($option);
+    }
+
+    // attrubute
+    let $attribute = $(`#attribute`);
+    $attribute.empty();
+    $attribute.append($(`<option selected>Attribute</option>`));
+
+    for(let a of attribute){
+        let v = a.replaceAll(" ","%20");
+        let $option = $(`<option value=${v}>${a}</option>`);
+        $attribute.append($option);
+    }
+}
+
+// enable/disable scale option base on monster card type
+function penScale(e){
+    e.preventDefault();
+    let cardType = $(`#monsterType`).val();
+
+    if (cardType.includes("Pendulum")){
+        $(`#scale`).prop("disabled",false);
+    }
+    else{
+        $(`#scale`).prop("disabled",true);
+    }
+}
+$(`#monsterType`).on("click",penScale);

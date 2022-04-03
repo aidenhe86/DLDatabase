@@ -10,7 +10,7 @@ CURR_USER_KEY = "curr_user"
 
 from forms import UserAddForm,LoginForm
 from models import db, connect_db, User, Deck, Like
-from cards import request_card_name
+from cards import request_card
 
 app = Flask(__name__)
 
@@ -138,13 +138,71 @@ def users_show(user_id):
 @app.route("/card_search")
 def searchcard():
     """search card"""
+    card = {}
+
+    # card name
     name = request.args.get("fname")
-    cards = request_card_name(name)
+    if name:
+        card["name"] = name
+
+    # spell/trap card
+    ctype = request.args.get("ctype")
+    if ctype == "Spell Card" or ctype == "Trap Card":
+        card["type"] = ctype
+
+    #monster card
+    elif ctype == "Monster" or ctype == "Extra Monster":
+        # monster type
+        mtype = request.args.get("mtype")
+        if mtype != "Monster Type":
+            card["type"] = mtype
+        else:
+            flash("Please select Monster Type.", "danger")
+            return redirect("/card_search")
+
+        # pendulum monster scale
+        if "Pendulum" in mtype:
+            scale = request.args.get("scale")
+            if scale != "Scale":
+                card["scale"] = scale
+        
+        # monster attribute
+        attr = request.args.get("attr")
+        if attr != "Attribute":
+            card["attribute"] = attr
+
+        # monster level
+        lv = request.args.get("lv")
+        if lv != "Level":
+            card["level"] = lv
+
+        # monster attack
+        atkNum = request.args["atkNum"]
+        if atkNum:
+            atkSymbol = request.args.get("atkSymbol")
+            card["atk"] = atkSymbol + atkNum
+        
+        # monster defense
+        defNum = request.args.get("defNum")
+        if defNum:
+            defSymbol = request.args.get("defSymbol")
+            card["def"] = defSymbol + defNum
+
+    # card race
+    race = request.args.get("race")
+    if race:
+        if race != "Card Race":
+            card["race"] = race
+
+    print("********************")
+    print(card)
+    print("********************")
+
+    cards = request_card(card)
+    
     if cards == []:
         flash("No card matching! Please try again.", "danger")
     return render_template("cards/cards.html",cards=cards)
-
-
 
 
 ##############################################################################
