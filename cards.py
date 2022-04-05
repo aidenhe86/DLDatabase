@@ -3,7 +3,7 @@ import requests
 API_BASE_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php?format=Duel%20Links"
 
 def request_card(card):
-    """return cards information by searching the given name"""
+    """return cards information base on given endpoint"""
     
     url = API_BASE_URL
 

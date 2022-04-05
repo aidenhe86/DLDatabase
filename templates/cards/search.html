@@ -1,0 +1,141 @@
+<form >
+    <!-- Name Search -->
+    <div class="row">
+        <label for="fname" class="col-2 col-form-label">
+            Card Name:
+        </label>
+        <div class="col-9">
+          <input type="text" name="fname" class="form-control"  placeholder="Card Name">
+        </div>
+        <div class="col-1">
+          <button type="submit" class="btn btn-primary mb-3" action="/card_search">Search</button>
+        </div>
+    </div>
+
+    <!-- Advance Search -->
+    <!-- Monster, Spell or Trap Card -->
+    <div class="row mb-3">
+        <div class="col-6 ">
+            <select class="form-select" name = "ctype" id="cardType">
+                <option selected>Card Type</option>
+                <option value="Monster">Monster Card</option>
+                <option value="Spell Card">Spell Card</option>
+                <option value="Trap Card">Trap Card</option>
+                <option value="Extra Monster">Extra Monster Card</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <select class="form-select" name = "race" id="cardRace" disabled>
+                <option selected>Card Race</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Monster card -->
+    <div class="row mb-3">
+        <div class="col-3 ">
+            <select class="monster form-select" name = "mtype" id="monsterType" disabled>
+                <option selected>Monster Type</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="monster form-select" name = "attr" id="attribute" disabled>
+                <option selected>Attribute</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="monster form-select" name = "lv" id="level" disabled>
+                <option selected>Level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <!-- Pendulum monster -->
+        <div class="col-3">
+            <select class="form-select" name = "scale" id="scale" disabled>
+                <option selected>Scale</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <select name="atkSymbol" id="atk" class="monster form-select" disabled>
+                <option value="gt">></option>
+                <option value="gte">>=</option>
+                <option value="lt"><</option>
+                <option value="lte"><=</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <input type="number" name="atkNum" class="monster form-control" placeholder="Attack" disabled>
+        </div>
+
+        <div class="col-2">
+            <select name="defSymbol" id="defSymbol" class="monster col-1 form-select" disabled>
+                <option value="gt">></option>
+                <option value="gte">>=</option>
+                <option value="lt"><</option>
+                <option value="lte"><=</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <input type="number" name="defNum" class="monster form-control" placeholder="Defense" disabled>
+        </div>
+    </div>
+
+</form>
+
+
+<ul class="cardlists">
+    {% for card in cards %}
+    <li id="{{card["id"]}}">
+        <div class="row m-1 border rounded">
+            <div class="col-3 p-2">
+                <img src="{{card["card_images"][0]["image_url_small"]}}" alt="card image">
+            </div>
+            <div class="col-9 p-2">
+                <h4 class="mt-0">{{card["name"]}}</h5>
+                <h5>
+                    {{card["type"]}} | {{card["race"]}}
+                    {% if (card["type"] != "Spell Card") or (card["type" != "Trap Card"]) %}
+                        {% if card["scale"] %}
+                             | Scale:{{card["scale"]}}
+                        {% endif %}
+                     | {{card["attribute"]}} | Level:{{card["level"]}} | ATK:{{card["atk"]}} | DEF:{{card["def"]}}
+                    {% endif %}
+                </h5>
+                <p>
+                    {{card["desc"]}}
+                </p>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+<script src="/static/cards.js"></script>

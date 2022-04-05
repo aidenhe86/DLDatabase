@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6">
+        <a href="/decks/add" class="btn btn-outline-primary"> Create A New Deck </a>
+    </div>
+    <div class="col-6">
+        <a href="/decks/edit" class="btn btn-outline-info"> Edit Decks </a>
+    </div>
+
+</div>
+
+
+<div class="col-sm-6">
+    <ul class="list-group" id="decks">
+      {% for deck in decks %}
+        <li class="list-group-item">
+          <a href="/decks/{{ deck.id }}" class="deck-link"/>
+
+          <a href="/users/{{ deck.user.id }}">
+            <img src="{{ deck.user.image_url }}" alt="user image" class="timeline-image">
+          </a>
+
+          <div class="deck-area">
+            <a href="/users/{{ deck.user.id }}">@{{ deck.user.username }}</a>
+            <span class="text-muted">{{ deck.timestamp.strftime('%d %B %Y') }}</span>
+            <p>{{ deck.name }}</p>
+          </div>
+          <form method="POST" action="/users/{{ deck.id }}/like" id="decks-form">
+            <button class="
+              btn 
+              btn-sm 
+              {{'btn-primary'}}"
+            >
+              <i class="fa fa-thumbs-up"></i> 
+            </button>
+          </form>
+
+        </li>
+
+      {% endfor %}
+
+    </ul>
+</div>
+
+{% endblock %}

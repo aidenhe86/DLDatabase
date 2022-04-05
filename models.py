@@ -74,6 +74,8 @@ class Deck(db.Model):
                         db.ForeignKey("users.id",ondelete="cascade"),
                         nullable=False)
 
+    name = db.Column(db.Text, nullable = False)
+
     timestamp = db.Column(
         db.DateTime,
         nullable=False,

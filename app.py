@@ -27,6 +27,8 @@ toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
 
+db.create_all()
+
 ##############################################################################
 # User signup/login/logout
 
@@ -203,6 +205,19 @@ def searchcard():
     if cards == []:
         flash("No card matching! Please try again.", "danger")
     return render_template("cards/cards.html",cards=cards)
+
+##############################################################################
+# Decks
+@app.route("/decks")
+def listdeck():
+    decks = Deck.query.all()
+
+    return render_template("decks/show.html",decks=decks)
+
+# @app.route("/decks/add")
+# def adddeck():
+
+
 
 
 ##############################################################################
