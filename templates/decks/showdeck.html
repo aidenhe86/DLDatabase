@@ -1,0 +1,87 @@
+<div class="deck p-2 mt-2 border border-primary">  
+    <div>
+        Main Deck:
+    </div>
+    <div id="mainDeck">
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md1_id}}.jpg" alt="{{deck.md1_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md2_id}}.jpg" alt="{{deck.md2_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md3_id}}.jpg" alt="{{deck.md3_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md4_id}}.jpg" alt="{{deck.md4_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md5_id}}.jpg" alt="{{deck.md5_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md6_id}}.jpg" alt="{{deck.md6_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md7_id}}.jpg" alt="{{deck.md7_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md8_id}}.jpg" alt="{{deck.md8_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md9_id}}.jpg" alt="{{deck.md9_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md10_id}}.jpg" alt="{{deck.md10_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md11_id}}.jpg" alt="{{deck.md11_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md12_id}}.jpg" alt="{{deck.md12_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md13_id}}.jpg" alt="{{deck.md13_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md14_id}}.jpg" alt="{{deck.md14_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md15_id}}.jpg" alt="{{deck.md15_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md16_id}}.jpg" alt="{{deck.md16_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md17_id}}.jpg" alt="{{deck.md17_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md18_id}}.jpg" alt="{{deck.md18_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md19_id}}.jpg" alt="{{deck.md19_id}}"></img>
+        <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md20_id}}.jpg" alt="{{deck.md20_id}}"></img>
+
+        <!-- optional card -->
+        {% if deck.md21_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md21_id}}.jpg" alt="{{deck.md21_id}}"></img>
+        {% endif %}
+        {% if deck.md22_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md22_id}}.jpg" alt="{{deck.md22_id}}"></img>
+        {% endif %}
+        {% if deck.md23_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md23_id}}.jpg" alt="{{deck.md23_id}}"></img>
+        {% endif %}
+        {% if deck.md24_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md24_id}}.jpg" alt="{{deck.md24_id}}"></img>
+        {% endif %}
+        {% if deck.md25_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md25_id}}.jpg" alt="{{deck.md25_id}}"></img>
+        {% endif %}
+        {% if deck.md26_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md26_id}}.jpg" alt="{{deck.md26_id}}"></img>
+        {% endif %}
+        {% if deck.md27_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md27_id}}.jpg" alt="{{deck.md27_id}}"></img>
+        {% endif %}
+        {% if deck.md28_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md28_id}}.jpg" alt="{{deck.md28_id}}"></img>
+        {% endif %}
+        {% if deck.md29_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md29_id}}.jpg" alt="{{deck.md29_id}}"></img>
+        {% endif %}
+        {% if deck.md30_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.md30_id}}.jpg" alt="{{deck.md30_id}}"></img>
+        {% endif %}
+        
+    </div>
+    <div class="pt-3">
+        Extra Deck:
+    </div>
+    <div id="extraDeck">
+        <!-- optional extra deck -->
+        {% if deck.ed1_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed1_id}}.jpg" alt="{{deck.ed1_id}}"></img>
+        {% endif %}
+        {% if deck.ed2_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed2_id}}.jpg" alt="{{deck.ed2_id}}"></img>
+        {% endif %}
+        {% if deck.ed3_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed3_id}}.jpg" alt="{{deck.ed3_id}}"></img>
+        {% endif %}
+        {% if deck.ed4_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed4_id}}.jpg" alt="{{deck.ed4_id}}"></img>
+        {% endif %}
+        {% if deck.ed5_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed5_id}}.jpg" alt="{{deck.ed5_id}}"></img>
+        {% endif %}
+        {% if deck.ed6_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed6_id}}.jpg" alt="{{deck.ed6_id}}"></img>
+        {% endif %}
+        {% if deck.ed7_id %}
+            <img src="https://storage.googleapis.com/ygoprodeck.com/pics_small/{{deck.ed7_id}}.jpg" alt="{{deck.ed7_id}}"></img>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class ="col-6">
+            <form id="deckForm" data-mode="add">
+                <div class="row">
+                    <label for="deckName" class="col-auto col-form-label-sm">Deck Name: </label>
+                    <div class="col-auto">
+                        <input type="text" name="name" class="form-control form-control-sm" id="formName">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div class="deck p-2 mt-2 border border-primary">  
+                <div>
+                    Main Deck:
+                </div>
+                <div id="mainDeck">
+
+                </div>
+                <div class="pt-3">
+                    Extra Deck:
+                </div>
+                <div id="extraDeck">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class ="col-6">
+            {% include "cards/search.html" %}
+        </div>
+
+
+    </div>
+    <script src="/static/decks.js"></script>
+{% endblock %}

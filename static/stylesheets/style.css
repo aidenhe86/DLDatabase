@@ -1,3 +1,7 @@
+body {
+  background-color: #e6ecf0;
+}
+
 .navbar {
   background-color: #fff;
   height: 46px;
@@ -79,10 +83,22 @@ nav form.navbar-form {
   border: 2px solid #007bff;
 }
 
-.cardlists { 
+.cardlist { 
   list-style-type: none;
 }
 
-.cardlists img {
+.cardlist img {
   max-width: 100%;
+}
+
+.deck {
+  position: sticky;
+  top: 20px;
+  border-radius: 5px;
+}
+
+.deck img{
+  width: 90px;
+  max-width: 100%;
+  padding: 3px;
 }

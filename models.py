@@ -124,19 +124,6 @@ class Deck(db.Model):
     ed6_id = db.Column(db.Integer)
     ed7_id = db.Column(db.Integer)
 
-class Like(db.Model):
-    """Mapping user likes on decks"""
-
-    __tablename__ = "likes"
-
-    id = db.Column(db.Integer, primary_key=True)
-
-    user_id = db.Column(db.Integer,
-                        db.ForeignKey("users.id", ondelete="cascade"))
-
-    deck_id = db.Column(db.Integer,
-                        db.ForeignKey("decks.id",ondelete="cascade"))
-
 
 
 

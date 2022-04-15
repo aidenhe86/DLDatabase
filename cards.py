@@ -40,13 +40,19 @@ def request_card(card):
     if "scale" in card:
         s = card["scale"]
         url = f"{url}&scale={s}"
+    
+    # return error if error already found
+    if "error" in card:
+        return card["error"]
 
     # send API request
     response = requests.get(url)
     r = response.json()
 
+    # If API returns a error
     if r.get("error"):
-        return []
+        return {"error": "No card matching! Please try again."}
+
     else:
         cards = r["data"][:10]
         return cards

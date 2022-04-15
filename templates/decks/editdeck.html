@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class ="col-6">
+            <form id="deckForm" data-mode="{{deck.id}}">
+                <div class="row">
+                    <label for="deckName" class="col-auto col-form-label-sm">Deck Name: </label>
+                    <div class="col-auto">
+                        <input type="text" name="name" class="form-control form-control-sm" id="formName" value="{{deck.name}}">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </div>
+            </form>
+            {% include "decks/showdeck.html" %}
+        </div>
+
+        <div class ="col-6">
+            {% include "cards/search.html" %}
+        </div>
+    </div>
+    <script src="/static/decks.js"></script>
+{% endblock %}

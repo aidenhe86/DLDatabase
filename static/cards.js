@@ -37,8 +37,8 @@ const $type = $(`#cardType`);
 const $monster = $(`.monster`);
 
 // enable/disable filter base on card type
-function selectFilter(evt){
-    evt.preventDefault();
+$(`#cardType`).on("click",function(e){
+    e.preventDefault();
 
     let cardType = $type.val();
     if(cardType === "Card Type"){
@@ -56,11 +56,8 @@ function selectFilter(evt){
             $monster.prop("disabled",true);
         }
     }
-
     populateRace(cardType);
-}
-$(`#cardType`).on("click",selectFilter)
-
+})
 
 // populate race base on card type
 function populateRace(cardType){
@@ -121,7 +118,7 @@ function populateMon(cardType){
 }
 
 // enable/disable scale option base on monster card type
-function penScale(e){
+$(`#monsterType`).on("click",function(e){
     e.preventDefault();
     let cardType = $(`#monsterType`).val();
 
@@ -131,5 +128,61 @@ function penScale(e){
     else{
         $(`#scale`).prop("disabled",true);
     }
+});
+
+// handle search card
+$("#searchForm").on("submit",async function(e){
+    e.preventDefault();
+    const $cardlist = $(".cardlist");
+    $cardlist.empty();
+    const cards = await axios.get(`/api/card_search?${$(this).serialize()}`)
+
+    // if error append error message
+    if (!(Array.isArray(cards.data))){
+        let msg = `
+        <div class="bg-danger text-white"> 
+            ${cards.data.error}
+        </div>`
+        $cardlist.append(msg)
+    }
+    else{
+        for (let card of cards.data){
+            let NewCard = generateCardHTML(card);
+            $cardlist.append(NewCard)
+        }
+    }
+})
+
+// Genrate html for card search results
+function generateCardHTML(card){
+    let type = `${card.type} | ${card.race}`
+    // check if the card is monster card
+    if ((card.type != "Spell Card") || (card.type != "Trap Card")){
+        // check if the card is pendulum monster card
+        if(card.scale){
+            type.concat(` | Scale:${card["scale"]}`)
+        }
+        type.concat(`
+             | ${card["attribute"]} | Level:${card["level"]} | ATK:${card["atk"]} | DEF:${card["def"]}
+        `)
+    }
+
+    return `
+    <li id= ${card.id}>
+        <div class="row m-1 border rounded">
+            <div class="col-3 p-2">
+                <img src="${card["card_images"][0]["image_url_small"]}" alt="card image">
+            </div>
+            <div class="col-9 p-2">
+                <h4 class="mt-0">${card.name}</h5>
+                <h5 class="${card.type}">
+                    ${type}
+                </h5>
+                <p>
+                    ${card.desc}
+                </p>
+            </div>
+        </div>
+    </li>
+    `
 }
-$(`#monsterType`).on("click",penScale);

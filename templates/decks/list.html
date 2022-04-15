@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="m-4 position-relative">
+        <a href="/decks/add" class="position-relative start-50 translate-middle btn btn-sm btn-primary rounded-pill"> Create A New Deck </a>
+    </div>
+
+
+
+<div class="m-3">
+    <ul class="list-group" id="userDecks">
+      {% for deck in decks %}
+        <li class="list-group-item">
+          <form>
+            <a href="/decks/{{ deck.id }}/edit">{{ deck.name }}</a>
+            <span class="text-muted">Deck creadted at: {{ deck.timestamp.strftime('%d %B %Y') }}</span>
+            <button class="btn btn-outline-danger btn-sm float-end" formaction="decks/{{deck.id}}/delete"
+            formmethod="POST">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

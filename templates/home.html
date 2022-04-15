@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
+<div class=" row">
     <div class="col-lg-6 col-sm-12">
-        <a href="/card_search">
+        <a href="/search" class="text-decoration-none">
             <div class="card text-white bg-primary">
                 <div class="card-header">Card Search</div>
                 <div class="card-body">
@@ -11,12 +11,14 @@
             </div>
         </a>
     </div>
+
+    <!-- remove underline change color-->
     <div class="col-lg-6 col-sm-12">
-        <a href="/decks">
+        <a href="/decks" class="text-decoration-none">
             <div class="card text-white bg-secondary">
                 <div class="card-header">Deck List</div>
                 <div class="card-body">
-                    You can see decks shared by users. 
+                    You can create your own decks and share. 
                 </div>
             </div>
 
@@ -24,9 +26,17 @@
     </div>
 </div>
 
-<p>
-    Hello
-</p>
+<div class="m-3">
+    <ul class="list-group">
+      {% for deck in decks %}
+        <li class="list-group-item">
+        <span class="text-muted">{{deck.user.username}} creadted</span>
+        <a href="/decks/{{ deck.id }}">{{ deck.name }}</a>
+        <span class="text-muted">at: {{ deck.timestamp.strftime('%d %B %Y') }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+</div>
 
 
 {% endblock %}
