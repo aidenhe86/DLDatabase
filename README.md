@@ -32,3 +32,19 @@ Deck Build
 * [Python](https://www.python.org/)
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Heroku](https://www.heroku.com/)
+
+
+#### Developments
+***
+To run the site locally,please follow the steps.
+1. Clone the repository:
+   git clone https://github.com/aidenhe86/capstone1.git
+
+2. Download all require libraries.
+   pip install -r requirements.txt
+
+   (It may have issue when download psycopg2, please manually install psycopg2)
+   pip install psycopg2-binary
+
+3. Run command to run website locally.
+   flask run

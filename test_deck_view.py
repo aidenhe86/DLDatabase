@@ -77,9 +77,14 @@ class DeckViewTestCase(TestCase):
     def test_api_search(self):
         """test search card api"""
         with self.client as c:
+            # search blank
             resp = c.get("/api/card_search")
             self.assertEqual(resp.status_code,200)
             self.assertIn("Cell Breeding Device",str(resp.data))
+
+            # search by fname
+            resp = c.get("/api/card_search?fname=cyclone")
+            self.assertIn("Cosmic Cyclone",str(resp.data))
 
 
     def test_add_deck(self):
